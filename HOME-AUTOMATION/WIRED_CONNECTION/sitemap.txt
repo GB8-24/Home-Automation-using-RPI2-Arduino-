@@ -1,0 +1,47 @@
+//Site Map
+   
+Frame label="Uber Sensor" {
+
+            Text item=itm_uber1_temp_mqtt
+
+            Text item=itm_uber1_hum_mqtt
+
+            Switch item=itm_uber1_light_sta
+
+            Switch item=itm_NAA_auto
+    }
+
+Frame label="Uber Sensor Alarm Status" {
+
+            Switch item=itm_uber1_gas_alm_sta mappings=[OFF="Off"]
+
+            Switch item=itm_uber1_flame_alm_sta mappings=[OFF="Off"]
+
+            Switch item=itm_uber1_bark_alm_sta mappings=[OFF="Off"]
+ 
+            Text item=itm_uber1_bark_cnt
+            Switch item=itm_uber1_pir_alm_sta mappings=[OFF="Off"]
+    }
+
+Frame label="Uber Sensor Alarm Enable" {
+
+            Switch item=itm_uber1_gas_alm_enb
+
+            Switch item=itm_uber1_flame_alm_enb
+
+            Switch item=itm_uber1_bark_alm_enb
+
+            Switch item=itm_uber1_pir_alm_enb
+    }
+
+
+
+
+
+
+
+
+
+
+
+

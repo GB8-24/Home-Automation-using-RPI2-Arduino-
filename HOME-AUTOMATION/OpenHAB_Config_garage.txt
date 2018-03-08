@@ -1,0 +1,81 @@
+1)  Under /configurations/openhab.cfg
+
+
+######################## Mail Action configuration ############################$
+
+mail:hostname=smtp.gmail.com
+
+mail:port=587
+
+mail:username=????? without the @gmail
+mail:password=?????
+
+mail:from=??? yourname@gmail.com
+
+mail:tls=true
+
+
+
+
+
+################################### MQTT Transport #########################################
+#
+
+mqtt:mymosquitto.url=tcp://localhost:1883
+
+mqtt:mymosquitto.qos=0
+
+mqtt:mymosquitto.retain=true
+
+mqtt:mymosquitto.async=true
+
+
+-----------------------------------------------------------------------------------------
+
+2)  Under /configurations/items/demo.items
+
+
+
+
+Number itm_garage_dist "Garage Dist [%.1f Inch]" (ALL) {mqtt="<[mymosquitto:4032:state:default]"}
+Contact itm_my_gar_door "Garage Door Status [MAP(en.map):%s]" <garage> (ALL)
+
+
+-----------------------------------------------------------------------------------
+3)  Under /configurations/sitemap/demo.sitemap
+
+Frame label="Garage"
+	
+{
+  Text item=itm_my_gar_door label="Garage Door Status [%s]"
+}
+
+--------------------------------------------------------------------------------
+4)  Under /configurations/rules/demo.rules
+
+
+rule "Convert Door"
+when
+
+  Item itm_garage_dist received update
+
+then
+		
+  if(itm_garage_dist.state < 19)
+
+  {
+
+   itm_my_gar_door.state = OPEN
+
+  }
+
+  else
+
+  {
+
+    itm_my_gar_door.state = CLOSED
+
+}
+
+end
+
